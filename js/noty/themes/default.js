@@ -1,7 +1,12 @@
 ;(function($) {
 
+<<<<<<< HEAD
 	$.noty.themes.defaultTheme = {
 		name: 'defaultTheme',
+=======
+	$.noty.themes.defaults = {
+		name: 'defaults',
+>>>>>>> fix errors based on JSHint's result
 		helpers: {
 			borderFix: function() {
 				if (this.options.dismissQueue) {
@@ -148,8 +153,13 @@
 			}
 		},
 		callback: {
+<<<<<<< HEAD
 			onShow: function() { $.noty.themes.defaultTheme.helpers.borderFix.apply(this); },
 			onClose: function() { $.noty.themes.defaultTheme.helpers.borderFix.apply(this); }
+=======
+			onShow: function() { $.noty.themes.defaults.helpers.borderFix.apply(this); },
+			onClose: function() { $.noty.themes.defaults.helpers.borderFix.apply(this); }
+>>>>>>> fix errors based on JSHint's result
 		}
 	};
 

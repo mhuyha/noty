@@ -10,9 +10,18 @@
  **/
 
 if (typeof Object.create !== 'function') {
+<<<<<<< HEAD
     Object.create = function (o) {
         function F() {
         }
+=======
+	Object.create = function (o) {
+		function F() {}
+		F.prototype = o;
+		return new F();
+	};
+}
+>>>>>>> fix errors based on JSHint's result
 
         F.prototype = o;
         return new F();
@@ -25,8 +34,13 @@ if (typeof Object.create !== 'function') {
 
         init:function (options) {
 
+<<<<<<< HEAD
             // Mix in the passed in options with the default options
             this.options = $.extend({}, $.noty.defaults, options);
+=======
+			this.options.layout = (this.options.custom) ? $.noty.layouts.inline : $.noty.layouts[this.options.layout];
+			this.options.theme = $.noty.themes[this.options.theme];
+>>>>>>> fix errors based on JSHint's result
 
             this.options.layout = (this.options.custom) ? $.noty.layouts['inline'] : $.noty.layouts[this.options.layout];
             this.options.theme = $.noty.themes[this.options.theme];
@@ -121,8 +135,19 @@ if (typeof Object.create !== 'function') {
             if ($.inArray('button', self.options.closeWith) == -1)
                 self.$closeButton.remove();
 
+<<<<<<< HEAD
             if (self.options.callback.onShow)
                 self.options.callback.onShow.apply(self);
+=======
+			self.$bar.animate(
+					self.options.animation.open,
+					self.options.animation.speed,
+					self.options.animation.easing,
+					function() {
+						if (self.options.callback.afterShow) self.options.callback.afterShow.apply(self);
+						self.shown = true;
+					});
+>>>>>>> fix errors based on JSHint's result
 
             self.$bar.animate(
                 self.options.animation.open,
@@ -166,6 +191,7 @@ if (typeof Object.create !== 'function') {
                 self.options.callback.onClose.apply(self);
             }
 
+<<<<<<< HEAD
             self.$bar.clearQueue().stop().animate(
                 self.options.animation.close,
                 self.options.animation.speed,
@@ -182,6 +208,17 @@ if (typeof Object.create !== 'function') {
                             $(this).remove();
                         });
                     }
+=======
+					// Modal Cleaning
+					if (self.options.modal) {
+						$.notyRenderer.setModalCount(-1);
+						if ($.notyRenderer.getModalCount() === 0) $('.noty_modal').fadeOut('fast', function() { $(this).remove(); });
+					}
+
+					// Layout Cleaning
+					$.notyRenderer.setLayoutCountFor(self, -1);
+					if ($.notyRenderer.getLayoutCountFor(self) === 0) $(self.options.layout.container.selector).remove();
+>>>>>>> fix errors based on JSHint's result
 
                     // Layout Cleaning
                     $.notyRenderer.setLayoutCountFor(self, -1);
@@ -239,7 +276,11 @@ if (typeof Object.create !== 'function') {
 
     }; // end NotyObject
 
+<<<<<<< HEAD
     $.notyRenderer = {};
+=======
+		(notification.options.force) ? $.noty.queue.unshift(notification) : $.noty.queue.push(notification);
+>>>>>>> fix errors based on JSHint's result
 
     $.notyRenderer.init = function (options) {
 
@@ -270,7 +311,20 @@ if (typeof Object.create !== 'function') {
             $.noty.ontap = true; // Queue is over
         }
 
+<<<<<<< HEAD
     };
+=======
+		// Where is the container?
+		if ($(notification.options.layout.container.selector).length === 0) {
+			if (notification.options.custom) {
+				notification.options.custom.append($(notification.options.layout.container.object).addClass('i-am-new'));
+			} else {
+				$('body').append($(notification.options.layout.container.object).addClass('i-am-new'));
+			}
+		} else {
+			$(notification.options.layout.container.selector).removeClass('i-am-new');
+		}
+>>>>>>> fix errors based on JSHint's result
 
     $.notyRenderer.show = function (notification) {
 
@@ -279,6 +333,7 @@ if (typeof Object.create !== 'function') {
             $.notyRenderer.setModalCount(+1);
         }
 
+<<<<<<< HEAD
         // Where is the container?
         if ($(notification.options.layout.container.selector).length == 0) {
             if (notification.options.custom) {
@@ -294,12 +349,27 @@ if (typeof Object.create !== 'function') {
 
         notification.show();
     };
+=======
+	$.notyRenderer.createModalFor = function(notification) {
+		if ($('.noty_modal').length === 0)
+			$('<div/>').addClass('noty_modal').data('noty_modal_count', 0).css(notification.options.theme.modal.css).prependTo($('body')).fadeIn('fast');
+	};
+
+	$.notyRenderer.getLayoutCountFor = function(notification) {
+		return $(notification.options.layout.container.selector).data('noty_layout_count') || 0;
+	};
+
+	$.notyRenderer.setLayoutCountFor = function(notification, arg) {
+		return $(notification.options.layout.container.selector).data('noty_layout_count', $.notyRenderer.getLayoutCountFor(notification) + arg);
+	};
+>>>>>>> fix errors based on JSHint's result
 
     $.notyRenderer.createModalFor = function (notification) {
         if ($('.noty_modal').length == 0)
             $('<div/>').addClass('noty_modal').data('noty_modal_count', 0).css(notification.options.theme.modal.css).prependTo($('body')).fadeIn('fast');
     };
 
+<<<<<<< HEAD
     $.notyRenderer.getLayoutCountFor = function (notification) {
         return $(notification.options.layout.container.selector).data('noty_layout_count') || 0;
     };
@@ -307,6 +377,25 @@ if (typeof Object.create !== 'function') {
     $.notyRenderer.setLayoutCountFor = function (notification, arg) {
         return $(notification.options.layout.container.selector).data('noty_layout_count', $.notyRenderer.getLayoutCountFor(notification) + arg);
     };
+=======
+	$.notyRenderer.setModalCount = function(arg) {
+		return $('.noty_modal').data('noty_modal_count', $.notyRenderer.getModalCount() + arg);
+	};
+
+	// This is for custom container
+	$.fn.noty = function(options) {
+		options.custom = $(this);
+		return $.notyRenderer.init(options);
+	};
+
+	$.noty = {};
+	$.noty.queue = [];
+	$.noty.ontap = true;
+	$.noty.layouts = {};
+	$.noty.themes = {};
+	$.noty.returns = 'object';
+	$.noty.store = {};
+>>>>>>> fix errors based on JSHint's result
 
     $.notyRenderer.getModalCount = function () {
         return $('.noty_modal').data('noty_modal_count') || 0;
@@ -342,9 +431,18 @@ if (typeof Object.create !== 'function') {
         return $.noty.get(id) ? $.noty.get(id).setText(text) : false;
     };
 
+<<<<<<< HEAD
     $.noty.setType = function (id, type) {
         return $.noty.get(id) ? $.noty.get(id).setType(type) : false;
     };
+=======
+	$.noty.consumeAlert = function(options) {
+		window.alert = function(text) {
+			if (options)
+				options.text = text;
+			else
+				options = {text:text};
+>>>>>>> fix errors based on JSHint's result
 
     $.noty.clearQueue = function () {
         $.noty.queue = [];
@@ -357,7 +455,35 @@ if (typeof Object.create !== 'function') {
         });
     };
 
+<<<<<<< HEAD
     var windowAlert = window.alert;
+=======
+	$.noty.defaults = {
+		layout: 'top',
+		theme: 'defaults',
+		type: 'alert',
+		text: '',
+		dismissQueue: true,
+		template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+		animation: {
+			open: {height: 'toggle'},
+			close: {height: 'toggle'},
+			easing: 'swing',
+			speed: 500
+		},
+		timeout: false,
+		force: false,
+		modal: false,
+		closeWith: ['click'],
+		callback: {
+			onShow: function() {},
+			afterShow: function() {},
+			onClose: function() {},
+			afterClose: function() {}
+		},
+		buttons: false
+	};
+>>>>>>> fix errors based on JSHint's result
 
     $.noty.consumeAlert = function (options) {
         window.alert = function (text) {
@@ -415,6 +541,7 @@ if (typeof Object.create !== 'function') {
 // Helpers
 function noty(options) {
 
+<<<<<<< HEAD
     // This is for BC  -  Will be deleted on v2.2.0
     var using_old = 0
         , old_to_new = {
@@ -427,6 +554,20 @@ function noty(options) {
             'onClose':'callback.onClose',
             'onClosed':'callback.afterClose'
         };
+=======
+	// This is for BC  -  Will be deleted on v2.2.0
+	var using_old = 0
+	,	old_to_new = {
+		'animateOpen': 'animation.open',
+		'animateClose': 'animation.close',
+		'easing': 'animation.easing',
+		'speed': 'animation.speed',
+		'onShow': 'callback.onShow',
+		'onShown': 'callback.afterShow',
+		'onClose': 'callback.onClose',
+		'onClosed': 'callback.afterClose'
+	};
+>>>>>>> fix errors based on JSHint's result
 
     jQuery.each(options, function (key, value) {
         if (old_to_new[key]) {
@@ -478,6 +619,7 @@ function noty(options) {
         options.theme = 'defaultTheme';
     }
 
+<<<<<<< HEAD
     if (!options.hasOwnProperty('dismissQueue')) {
         if (options.layout == 'topLeft'
             || options.layout == 'topRight'
@@ -488,6 +630,18 @@ function noty(options) {
             options.dismissQueue = false;
         }
     }
+=======
+	if (!options.hasOwnProperty('dismissQueue')) {
+		if (options.layout == 'topLeft'
+			|| options.layout == 'topRight'
+			|| options.layout == 'bottomLeft'
+			|| options.layout == 'bottomRight') {
+			options.dismissQueue = true;
+		} else {
+			options.dismissQueue = false;
+		}
+	}
+>>>>>>> fix errors based on JSHint's result
 
     if (options.buttons) {
         jQuery.each(options.buttons, function (i, button) {
