@@ -66,9 +66,9 @@ if (typeof Object.create !== 'function') {
             this.options.theme = $.noty.themes[this.options.theme];
 
             delete options.layout;
-            delete options.theme;
+delete options.theme;
 
-            this.options = $.extend({}, this.options, this.options.layout.options);
+this.options = $.extend({}, this.options, this.options.layout.options);
             this.options.id = 'noty_' + (new Date().getTime() * Math.floor(Math.random() * 1000000));
 
             this.options = $.extend({}, this.options, options);
