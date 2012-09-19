@@ -1,12 +1,21 @@
 ;(function($) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$.noty.themes.defaultTheme = {
 		name: 'defaultTheme',
 =======
 	$.noty.themes.defaults = {
 		name: 'defaults',
 >>>>>>> fix errors based on JSHint's result
+=======
+	$.noty.themes.defaults = {
+		name: 'defaults',
+=======
+	$.noty.themes.defaultTheme = {
+		name: 'defaultTheme',
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 		helpers: {
 			borderFix: function() {
 				if (this.options.dismissQueue) {
@@ -154,12 +163,21 @@
 		},
 		callback: {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			onShow: function() { $.noty.themes.defaultTheme.helpers.borderFix.apply(this); },
 			onClose: function() { $.noty.themes.defaultTheme.helpers.borderFix.apply(this); }
 =======
 			onShow: function() { $.noty.themes.defaults.helpers.borderFix.apply(this); },
 			onClose: function() { $.noty.themes.defaults.helpers.borderFix.apply(this); }
 >>>>>>> fix errors based on JSHint's result
+=======
+			onShow: function() { $.noty.themes.defaults.helpers.borderFix.apply(this); },
+			onClose: function() { $.noty.themes.defaults.helpers.borderFix.apply(this); }
+=======
+			onShow: function() { $.noty.themes.defaultTheme.helpers.borderFix.apply(this); },
+			onClose: function() { $.noty.themes.defaultTheme.helpers.borderFix.apply(this); }
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 		}
 	};
 

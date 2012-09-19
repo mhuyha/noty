@@ -11,17 +11,28 @@
 
 if (typeof Object.create !== 'function') {
 <<<<<<< HEAD
+<<<<<<< HEAD
     Object.create = function (o) {
         function F() {
         }
 =======
+=======
+>>>>>>> Squashed commit of the following:
 	Object.create = function (o) {
 		function F() {}
 		F.prototype = o;
 		return new F();
 	};
 }
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
+=======
+=======
+    Object.create = function (o) {
+        function F() {
+        }
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 
         F.prototype = o;
         return new F();
@@ -35,12 +46,21 @@ if (typeof Object.create !== 'function') {
         init:function (options) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             // Mix in the passed in options with the default options
             this.options = $.extend({}, $.noty.defaults, options);
 =======
 			this.options.layout = (this.options.custom) ? $.noty.layouts.inline : $.noty.layouts[this.options.layout];
 			this.options.theme = $.noty.themes[this.options.theme];
 >>>>>>> fix errors based on JSHint's result
+=======
+			this.options.layout = (this.options.custom) ? $.noty.layouts.inline : $.noty.layouts[this.options.layout];
+			this.options.theme = $.noty.themes[this.options.theme];
+=======
+            // Mix in the passed in options with the default options
+            this.options = $.extend({}, $.noty.defaults, options);
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 
             this.options.layout = (this.options.custom) ? $.noty.layouts['inline'] : $.noty.layouts[this.options.layout];
             this.options.theme = $.noty.themes[this.options.theme];
@@ -136,9 +156,12 @@ if (typeof Object.create !== 'function') {
                 self.$closeButton.remove();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (self.options.callback.onShow)
                 self.options.callback.onShow.apply(self);
 =======
+=======
+>>>>>>> Squashed commit of the following:
 			self.$bar.animate(
 					self.options.animation.open,
 					self.options.animation.speed,
@@ -147,7 +170,14 @@ if (typeof Object.create !== 'function') {
 						if (self.options.callback.afterShow) self.options.callback.afterShow.apply(self);
 						self.shown = true;
 					});
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
+=======
+=======
+            if (self.options.callback.onShow)
+                self.options.callback.onShow.apply(self);
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 
             self.$bar.animate(
                 self.options.animation.open,
@@ -192,6 +222,7 @@ if (typeof Object.create !== 'function') {
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             self.$bar.clearQueue().stop().animate(
                 self.options.animation.close,
                 self.options.animation.speed,
@@ -209,6 +240,8 @@ if (typeof Object.create !== 'function') {
                         });
                     }
 =======
+=======
+>>>>>>> Squashed commit of the following:
 					// Modal Cleaning
 					if (self.options.modal) {
 						$.notyRenderer.setModalCount(-1);
@@ -218,6 +251,7 @@ if (typeof Object.create !== 'function') {
 					// Layout Cleaning
 					$.notyRenderer.setLayoutCountFor(self, -1);
 					if ($.notyRenderer.getLayoutCountFor(self) === 0) $(self.options.layout.container.selector).remove();
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
 
                     // Layout Cleaning
@@ -241,6 +275,48 @@ if (typeof Object.create !== 'function') {
 
                 });
 
+=======
+=======
+            self.$bar.clearQueue().stop().animate(
+                self.options.animation.close,
+                self.options.animation.speed,
+                self.options.animation.easing,
+                function () {
+                    if (self.options.callback.afterClose) self.options.callback.afterClose.apply(self);
+                })
+                .promise().done(function () {
+
+                    // Modal Cleaning
+                    if (self.options.modal) {
+                        $.notyRenderer.setModalCount(-1);
+                        if ($.notyRenderer.getModalCount() == 0) $('.noty_modal').fadeOut('fast', function () {
+                            $(this).remove();
+                        });
+                    }
+>>>>>>> origin/master
+
+                    // Layout Cleaning
+                    $.notyRenderer.setLayoutCountFor(self, -1);
+                    if ($.notyRenderer.getLayoutCountFor(self) == 0) $(self.options.layout.container.selector).remove();
+
+                    self.$bar.remove();
+                    self.$bar = null;
+                    self.closed = true;
+
+                    delete $.noty.store[self.options.id]; // deleting noty from store
+
+                    self.options.theme.callback.onClose.apply(self);
+
+                    if (!self.options.dismissQueue) {
+                        // Queue render
+                        $.noty.ontap = true;
+
+                        $.notyRenderer.render();
+                    }
+
+                });
+
+>>>>>>> Squashed commit of the following:
         }, // end close
 
         setText:function (text) {
@@ -277,10 +353,17 @@ if (typeof Object.create !== 'function') {
     }; // end NotyObject
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     $.notyRenderer = {};
 =======
 		(notification.options.force) ? $.noty.queue.unshift(notification) : $.noty.queue.push(notification);
 >>>>>>> fix errors based on JSHint's result
+=======
+		(notification.options.force) ? $.noty.queue.unshift(notification) : $.noty.queue.push(notification);
+=======
+    $.notyRenderer = {};
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 
     $.notyRenderer.init = function (options) {
 
@@ -312,8 +395,11 @@ if (typeof Object.create !== 'function') {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     };
 =======
+=======
+>>>>>>> Squashed commit of the following:
 		// Where is the container?
 		if ($(notification.options.layout.container.selector).length === 0) {
 			if (notification.options.custom) {
@@ -324,7 +410,13 @@ if (typeof Object.create !== 'function') {
 		} else {
 			$(notification.options.layout.container.selector).removeClass('i-am-new');
 		}
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
+=======
+=======
+    };
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 
     $.notyRenderer.show = function (notification) {
 
@@ -332,6 +424,7 @@ if (typeof Object.create !== 'function') {
             $.notyRenderer.createModalFor(notification);
             $.notyRenderer.setModalCount(+1);
         }
+<<<<<<< HEAD
 
 <<<<<<< HEAD
         // Where is the container?
@@ -350,6 +443,10 @@ if (typeof Object.create !== 'function') {
         notification.show();
     };
 =======
+=======
+
+<<<<<<< HEAD
+>>>>>>> Squashed commit of the following:
 	$.notyRenderer.createModalFor = function(notification) {
 		if ($('.noty_modal').length === 0)
 			$('<div/>').addClass('noty_modal').data('noty_modal_count', 0).css(notification.options.theme.modal.css).prependTo($('body')).fadeIn('fast');
@@ -362,6 +459,7 @@ if (typeof Object.create !== 'function') {
 	$.notyRenderer.setLayoutCountFor = function(notification, arg) {
 		return $(notification.options.layout.container.selector).data('noty_layout_count', $.notyRenderer.getLayoutCountFor(notification) + arg);
 	};
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
 
     $.notyRenderer.createModalFor = function (notification) {
@@ -378,6 +476,32 @@ if (typeof Object.create !== 'function') {
         return $(notification.options.layout.container.selector).data('noty_layout_count', $.notyRenderer.getLayoutCountFor(notification) + arg);
     };
 =======
+=======
+=======
+        // Where is the container?
+        if ($(notification.options.layout.container.selector).length == 0) {
+            if (notification.options.custom) {
+                notification.options.custom.append($(notification.options.layout.container.object).addClass('i-am-new'));
+            } else {
+                $('body').append($(notification.options.layout.container.object).addClass('i-am-new'));
+            }
+        } else {
+            $(notification.options.layout.container.selector).removeClass('i-am-new');
+        }
+
+        $.notyRenderer.setLayoutCountFor(notification, +1);
+
+        notification.show();
+    };
+>>>>>>> origin/master
+
+    $.notyRenderer.createModalFor = function (notification) {
+        if ($('.noty_modal').length == 0)
+            $('<div/>').addClass('noty_modal').data('noty_modal_count', 0).css(notification.options.theme.modal.css).prependTo($('body')).fadeIn('fast');
+    };
+
+<<<<<<< HEAD
+>>>>>>> Squashed commit of the following:
 	$.notyRenderer.setModalCount = function(arg) {
 		return $('.noty_modal').data('noty_modal_count', $.notyRenderer.getModalCount() + arg);
 	};
@@ -395,6 +519,7 @@ if (typeof Object.create !== 'function') {
 	$.noty.themes = {};
 	$.noty.returns = 'object';
 	$.noty.store = {};
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
 
     $.notyRenderer.getModalCount = function () {
@@ -423,6 +548,44 @@ if (typeof Object.create !== 'function') {
         return $.noty.store.hasOwnProperty(id) ? $.noty.store[id] : false;
     };
 
+=======
+=======
+    $.notyRenderer.getLayoutCountFor = function (notification) {
+        return $(notification.options.layout.container.selector).data('noty_layout_count') || 0;
+    };
+
+    $.notyRenderer.setLayoutCountFor = function (notification, arg) {
+        return $(notification.options.layout.container.selector).data('noty_layout_count', $.notyRenderer.getLayoutCountFor(notification) + arg);
+    };
+>>>>>>> origin/master
+
+    $.notyRenderer.getModalCount = function () {
+        return $('.noty_modal').data('noty_modal_count') || 0;
+    };
+
+    $.notyRenderer.setModalCount = function (arg) {
+        return $('.noty_modal').data('noty_modal_count', $.notyRenderer.getModalCount() + arg);
+    };
+
+    // This is for custom container
+    $.fn.noty = function (options) {
+        options.custom = $(this);
+        return $.notyRenderer.init(options);
+    };
+
+    $.noty = {};
+    $.noty.queue = [];
+    $.noty.ontap = true;
+    $.noty.layouts = {};
+    $.noty.themes = {};
+    $.noty.returns = 'object';
+    $.noty.store = {};
+
+    $.noty.get = function (id) {
+        return $.noty.store.hasOwnProperty(id) ? $.noty.store[id] : false;
+    };
+
+>>>>>>> Squashed commit of the following:
     $.noty.close = function (id) {
         return $.noty.get(id) ? $.noty.get(id).close() : false;
     };
@@ -432,17 +595,28 @@ if (typeof Object.create !== 'function') {
     };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     $.noty.setType = function (id, type) {
         return $.noty.get(id) ? $.noty.get(id).setType(type) : false;
     };
 =======
+=======
+>>>>>>> Squashed commit of the following:
 	$.noty.consumeAlert = function(options) {
 		window.alert = function(text) {
 			if (options)
 				options.text = text;
 			else
 				options = {text:text};
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
+=======
+=======
+    $.noty.setType = function (id, type) {
+        return $.noty.get(id) ? $.noty.get(id).setType(type) : false;
+    };
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 
     $.noty.clearQueue = function () {
         $.noty.queue = [];
@@ -456,8 +630,11 @@ if (typeof Object.create !== 'function') {
     };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     var windowAlert = window.alert;
 =======
+=======
+>>>>>>> Squashed commit of the following:
 	$.noty.defaults = {
 		layout: 'top',
 		theme: 'defaults',
@@ -483,7 +660,13 @@ if (typeof Object.create !== 'function') {
 		},
 		buttons: false
 	};
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
+=======
+=======
+    var windowAlert = window.alert;
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 
     $.noty.consumeAlert = function (options) {
         window.alert = function (text) {
@@ -542,6 +725,7 @@ if (typeof Object.create !== 'function') {
 function noty(options) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // This is for BC  -  Will be deleted on v2.2.0
     var using_old = 0
         , old_to_new = {
@@ -555,6 +739,8 @@ function noty(options) {
             'onClosed':'callback.afterClose'
         };
 =======
+=======
+>>>>>>> Squashed commit of the following:
 	// This is for BC  -  Will be deleted on v2.2.0
 	var using_old = 0
 	,	old_to_new = {
@@ -567,7 +753,24 @@ function noty(options) {
 		'onClose': 'callback.onClose',
 		'onClosed': 'callback.afterClose'
 	};
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
+=======
+=======
+    // This is for BC  -  Will be deleted on v2.2.0
+    var using_old = 0
+        , old_to_new = {
+            'animateOpen':'animation.open',
+            'animateClose':'animation.close',
+            'easing':'animation.easing',
+            'speed':'animation.speed',
+            'onShow':'callback.onShow',
+            'onShown':'callback.afterShow',
+            'onClose':'callback.onClose',
+            'onClosed':'callback.afterClose'
+        };
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 
     jQuery.each(options, function (key, value) {
         if (old_to_new[key]) {
@@ -620,6 +823,7 @@ function noty(options) {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (!options.hasOwnProperty('dismissQueue')) {
         if (options.layout == 'topLeft'
             || options.layout == 'topRight'
@@ -631,6 +835,8 @@ function noty(options) {
         }
     }
 =======
+=======
+>>>>>>> Squashed commit of the following:
 	if (!options.hasOwnProperty('dismissQueue')) {
 		if (options.layout == 'topLeft'
 			|| options.layout == 'topRight'
@@ -641,7 +847,22 @@ function noty(options) {
 			options.dismissQueue = false;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> fix errors based on JSHint's result
+=======
+=======
+    if (!options.hasOwnProperty('dismissQueue')) {
+        if (options.layout == 'topLeft'
+            || options.layout == 'topRight'
+            || options.layout == 'bottomLeft'
+            || options.layout == 'bottomRight') {
+            options.dismissQueue = true;
+        } else {
+            options.dismissQueue = false;
+        }
+    }
+>>>>>>> origin/master
+>>>>>>> Squashed commit of the following:
 
     if (options.buttons) {
         jQuery.each(options.buttons, function (i, button) {
